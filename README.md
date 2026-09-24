@@ -54,9 +54,9 @@ HandleOrderProcessed — the method being added; its signature must match Action
 Together the line means: "whenever orderService raises OrderProcessed, also call HandleOrderProcessed as one of the handlers."
 
 
-Q8 — Challenge: Action<Order> vs event Action<Order>
+Q8 — Challenge: Action<Order> vs event Action<Order>— why use an event? 
 
-— why use an event? A plain Action<Order> field can be invoked and reassigned by any code that has access to it 
+A plain Action<Order> field can be invoked and reassigned by any code that has access to it 
 — someObject.SomeAction(order) or even someObject.SomeAction = someOtherDelegate (silently discarding all previous subscribers) are both legal from outside the class.
 An event Action<Order> locks that down: outside code can only add/remove itself from the invocation list, 
 and only the declaring class can actually raise the notification or clear the list. Using event protects the publish/subscribe contract 
